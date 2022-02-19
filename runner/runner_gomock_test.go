@@ -12,6 +12,7 @@ import (
 
 func TestRunnerNoError(t *testing.T) {
 	ctrl := gomock.NewController(t)
+	defer ctrl.Finish() // this line not required if you are using go 1.14+ and gomock 1.5.0+
 
 	storageClient := mock_storage.NewMockStorageClient(ctrl)
 
@@ -26,6 +27,7 @@ func TestRunnerNoError(t *testing.T) {
 
 func TestRunnerError(t *testing.T) {
 	ctrl := gomock.NewController(t)
+	defer ctrl.Finish() // this line not required if you are using go 1.14+ and gomock 1.5.0+
 
 	storageClient := mock_storage.NewMockStorageClient(ctrl)
 
