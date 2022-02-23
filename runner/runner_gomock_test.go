@@ -33,9 +33,9 @@ func TestRunnerError(t *testing.T) {
 
 	runner := NewRunner(storageClient)
 
-	storageClient.EXPECT().GetFile(gomock.Any(), gomock.Any()).Return([]byte("Hello World"), nil)
-	storageClient.EXPECT().GetFile(gomock.Any(), gomock.Any()).Return([]byte("Hello World"), nil)
-	storageClient.EXPECT().GetFile(gomock.Any(), gomock.Any()).Return(nil, errors.New("forced error"))
+	storageClient.EXPECT().GetFile(gomock.Any(), gomock.Eq("testing/example_0.txt")).Return([]byte("Hello World"), nil)
+	storageClient.EXPECT().GetFile(gomock.Any(), gomock.Eq("testing/example_1.txt")).Return([]byte("Hello World"), nil)
+	storageClient.EXPECT().GetFile(gomock.Any(), gomock.Eq("testing/example_2.txt")).Return(nil, errors.New("forced error"))
 
 	err := runner.Run(context.Background())
 
